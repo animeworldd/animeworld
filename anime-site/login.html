@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход - AnimeWorld</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <a href="index.html" style="text-decoration: none; color: inherit;">
+                    <h1>🍥 AnimeWorld</h1>
+                </a>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Главная</a>
+            </div>
+            <div class="nav-controls">
+                <div class="theme-switcher">
+                    <button class="theme-btn" data-theme="default" onclick="setTheme('default')" title="Светлая">☀️</button>
+                    <button class="theme-btn" data-theme="dark" onclick="setTheme('dark')" title="Тёмная">🌙</button>
+                    <button class="theme-btn" data-theme="blue" onclick="setTheme('blue')" title="Синяя">🔵</button>
+                    <button class="theme-btn" data-theme="purple" onclick="setTheme('purple')" title="Фиолетовая">🟣</button>
+                    <button class="theme-btn" data-theme="cyberpunk" onclick="setTheme('cyberpunk')" title="Киберпанк">🤖</button>
+                    <button class="theme-btn" data-theme="sunset" onclick="setTheme('sunset')" title="Закат">🌅</button>
+                    <button class="theme-btn" data-theme="forest" onclick="setTheme('forest')" title="Лесная">🌲</button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-header">
+                <h1>🍥 AnimeWorld</h1>
+                <h2>Вход</h2>
+            </div>
+            <form id="loginForm" class="auth-form">
+                <input type="text" id="username" placeholder="Логин" required>
+                <input type="password" id="password" placeholder="Пароль" required>
+                <button type="submit" class="auth-btn">Войти</button>
+                <div class="auth-footer">
+                    <p>Нет аккаунта? <a href="register.html">Зарегистрироваться</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        if (!localStorage.getItem('users')) {
+            const defaultUsers = [{
+                id: 1,
+                username: 'Ryuggugg',
+                email: 'admin@animeworld.com',
+                password: 'danil2010555999',
+                role: 'admin',
+                avatar: '👑',
+                favorites: [],
+                createdAt: new Date().toISOString()
+            }];
+            localStorage.setItem('users', JSON.stringify(defaultUsers));
+        }
+
+        document.getElementById('loginForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value;
+            const users = JSON.parse(localStorage.getItem('users') || '[]');
+            const user = users.find(u => u.username === username && u.password === password);
+            if (user) {
+                localStorage.setItem('currentUser', JSON.stringify(user));
+                window.location.href = 'index.html';
+            } else {
+                if (typeof window.showAlertModal === 'function') {
+                    window.showAlertModal('❌ Неверный логин или пароль!');
+                } else {
+                    alert('❌ Неверный логин или пароль!');
+                }
+            }
+        });
+    </script>
+</body>
+</html>
