@@ -1,0 +1,54 @@
+{
+  "anime": [
+    {
+      "id": 1,
+      "title": "Наруто: Ураганные хроники",
+      "image": "",
+      "genre": "shonen",
+      "rating": 8.5,
+      "year": 2007,
+      "description": "История о ниндзя, который мечтает стать Хокаге",
+      "episodes": 12
+    },
+    {
+      "id": 2,
+      "title": "Клинок, рассекающий демонов",
+      "image": "",
+      "genre": "shonen",
+      "rating": 9.0,
+      "year": 2019,
+      "description": "Танджиро ищет способ вернуть сестру обратно в человека",
+      "episodes": 26
+    },
+    {
+      "id": 3,
+      "title": "Re:Zero",
+      "image": "",
+      "genre": "isekai",
+      "rating": 8.7,
+      "year": 2016,
+      "description": "Парень попадает в другой мир и получает способность возрождаться",
+      "episodes": 25
+    },
+    {
+      "id": 4,
+      "title": "Атака Титанов",
+      "image": "",
+      "genre": "seinen",
+      "rating": 9.5,
+      "year": 2013,
+      "description": "Человечество живёт за стенами от титанов",
+      "episodes": 25
+    },
+    {
+      "id": 5,
+      "title": "Твоё имя",
+      "image": "",
+      "genre": "romance",
+      "rating": 9.2,
+      "year": 2016,
+      "description": "Мистическая история любви",
+      "episodes": 1
+    }
+  ]
+}

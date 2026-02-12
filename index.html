@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>AnimeWorld - Смотреть аниме онлайн</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" href="favicon.ico">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <a href="index.html">
+                    <h1>🍥 AnimeWorld</h1>
+                </a>
+            </div>
+
+            <!-- Бургер-кнопка для мобильных -->
+            <button class="burger-btn" id="burgerBtn" aria-label="Меню">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <!-- Навигационные ссылки -->
+            <div class="nav-links" id="navLinks">
+                <a href="index.html" class="active">Главная</a>
+            </div>
+
+            <!-- Поиск, пользовательское меню, темы -->
+            <div class="nav-controls">
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="Поиск аниме...">
+                    <button id="searchBtn">🔍</button>
+                </div>
+                <div id="userMenu" class="user-menu"></div>
+                <div class="theme-switcher">
+                    <button class="theme-btn" data-theme="default" onclick="setTheme('default')" title="Светлая">☀️</button>
+                    <button class="theme-btn" data-theme="dark" onclick="setTheme('dark')" title="Тёмная">🌙</button>
+                    <button class="theme-btn" data-theme="blue" onclick="setTheme('blue')" title="Синяя">🔵</button>
+                    <button class="theme-btn" data-theme="purple" onclick="setTheme('purple')" title="Фиолетовая">🟣</button>
+                    <button class="theme-btn" data-theme="cyberpunk" onclick="setTheme('cyberpunk')" title="Киберпанк">🤖</button>
+                    <button class="theme-btn" data-theme="sunset" onclick="setTheme('sunset')" title="Закат">🌅</button>
+                    <button class="theme-btn" data-theme="forest" onclick="setTheme('forest')" title="Лесная">🌲</button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Контейнер для фильтров – будет заполнен динамически -->
+    <section class="filters"></section>
+
+    <main>
+        <div id="animeGrid" class="anime-grid"></div>
+    </main>
+
+    <footer>
+        <p>© 2026 AnimeWorld</p>
+    </footer>
+
+    <!-- Подключаем основной скрипт -->
+    <script src="script.js"></script>
+
+    <!-- Обработчик бургер-меню (можно разместить здесь или в script.js) -->
+    <script>
+        (function() {
+            "use strict";
+            
+            const burgerBtn = document.getElementById('burgerBtn');
+            const navLinks = document.getElementById('navLinks');
+
+            if (burgerBtn && navLinks) {
+                burgerBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    this.classList.toggle('active');
+                    navLinks.classList.toggle('active');
+                    
+                    // Блокировка прокрутки при открытом меню (опционально)
+                    if (navLinks.classList.contains('active')) {
+                        document.body.style.overflow = 'hidden';
+                    } else {
+                        document.body.style.overflow = '';
+                    }
+                });
+
+                // Закрытие меню при клике на ссылку
+                navLinks.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', function() {
+                        burgerBtn.classList.remove('active');
+                        navLinks.classList.remove('active');
+                        document.body.style.overflow = '';
+                    });
+                });
+
+                // Закрытие меню при изменении размера окна (если стало больше 768px)
+                window.addEventListener('resize', function() {
+                    if (window.innerWidth > 768) {
+                        burgerBtn.classList.remove('active');
+                        navLinks.classList.remove('active');
+                        document.body.style.overflow = '';
+                    }
+                });
+            }
+        })();
+    </script>
+</body>
+</html>
