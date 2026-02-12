@@ -9,19 +9,36 @@
 <body>
     <header>
         <nav class="navbar">
-            <div class="logo"><a href="index.html"><h1>🍥 AnimeWorld</h1></a></div>
-            <button class="burger-btn" id="burgerBtn"><span></span><span></span><span></span></button>
-            <div class="nav-links" id="navLinks"><a href="index.html">Главная</a></div>
+            <div class="logo">
+                <a href="index.html">
+                    <h1 data-lang="app.name">🍥 AnimeWorld</h1>
+                </a>
+            </div>
+            <button class="burger-btn" id="burgerBtn">
+                <span></span><span></span><span></span>
+            </button>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html" data-lang="nav.home">Главная</a>
+            </div>
             <div class="nav-controls">
                 <div id="userMenu" class="user-menu"></div>
+                <div class="language-switcher">
+                    <button class="lang-btn" data-lang="ru" onclick="setLanguage('ru')">🇷🇺 Русский</button>
+                    <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">🇬🇧 English</button>
+                </div>
                 <div class="theme-switcher">
-                    <button class="theme-btn" data-theme="default" onclick="setTheme('default')">☀️</button>
-                    <button class="theme-btn" data-theme="dark" onclick="setTheme('dark')">🌙</button>
-                    <button class="theme-btn" data-theme="blue" onclick="setTheme('blue')">🔵</button>
-                    <button class="theme-btn" data-theme="purple" onclick="setTheme('purple')">🟣</button>
-                    <button class="theme-btn" data-theme="cyberpunk" onclick="setTheme('cyberpunk')">🤖</button>
-                    <button class="theme-btn" data-theme="sunset" onclick="setTheme('sunset')">🌅</button>
-                    <button class="theme-btn" data-theme="forest" onclick="setTheme('forest')">🌲</button>
+                    <button class="theme-btn" data-theme="default" onclick="setTheme('default')" title="Светлая">☀️</button>
+                    <button class="theme-btn" data-theme="dark" onclick="setTheme('dark')" title="Тёмная">🌙</button>
+                    <button class="theme-btn" data-theme="blue" onclick="setTheme('blue')" title="Синяя">🔵</button>
+                    <button class="theme-btn" data-theme="purple" onclick="setTheme('purple')" title="Фиолетовая">🟣</button>
+                    <button class="theme-btn" data-theme="cyberpunk" onclick="setTheme('cyberpunk')" title="Киберпанк">🤖</button>
+                    <button class="theme-btn" data-theme="sunset" onclick="setTheme('sunset')" title="Закат">🌅</button>
+                    <button class="theme-btn" data-theme="forest" onclick="setTheme('forest')" title="Лесная">🌲</button>
+                    <button class="theme-btn" data-theme="ocean" onclick="setTheme('ocean')" title="Океан">🌊</button>
+                    <button class="theme-btn" data-theme="candy" onclick="setTheme('candy')" title="Карамель">🍬</button>
+                    <button class="theme-btn" data-theme="coffee" onclick="setTheme('coffee')" title="Кофе">☕</button>
+                    <button class="theme-btn" data-theme="mint" onclick="setTheme('mint')" title="Мята">🌿</button>
+                    <button class="theme-btn" data-theme="lavender" onclick="setTheme('lavender')" title="Лаванда">💜</button>
                 </div>
             </div>
         </nav>
@@ -35,21 +52,21 @@
             <div class="video-controls-overlay" id="videoControlsOverlay">
                 <div class="control-bar">
                     <div class="control-group">
-                        <button id="playPauseBtn" class="ctrl-btn">⏯️</button>
-                        <button id="lockBtn" class="ctrl-btn">🔓</button>
+                        <button id="playPauseBtn" class="ctrl-btn" data-lang="player.play">⏯️</button>
+                        <button id="lockBtn" class="ctrl-btn" data-lang="player.unlock">🔓</button>
                     </div>
                     <div class="control-group">
                         <span id="currentTime">0:00</span><span id="duration"> / 0:00</span>
                     </div>
                     <div class="control-group">
-                        <button id="speedBtn" class="ctrl-btn">⏩</button>
+                        <button id="speedBtn" class="ctrl-btn" data-lang="player.speed">⏩</button>
                         <div id="speedMenu" class="dropdown-menu">
                             <button data-speed="0.5">0.5x</button>
                             <button data-speed="1" class="active">1x</button>
                             <button data-speed="1.5">1.5x</button>
                             <button data-speed="2">2x</button>
                         </div>
-                        <button id="fullscreenBtn" class="ctrl-btn">⛶</button>
+                        <button id="fullscreenBtn" class="ctrl-btn" data-lang="player.fullscreen">⛶</button>
                     </div>
                 </div>
                 <div class="progress-bar-container">
@@ -62,23 +79,33 @@
             <p id="animeDescription"></p>
         </div>
         <div class="episodes-list">
-            <h3>📋 Список серий</h3>
+            <h3 data-lang="player.episodes">📋 Список серий</h3>
             <div id="episodes"></div>
         </div>
     </div>
 
+    <footer>
+        <p data-lang="footer.copyright">© 2026 AnimeWorld</p>
+        <div class="quote-container">
+            <button id="randomQuoteBtn" class="quote-btn" onclick="showRandomQuote()" data-lang="quote.button">🎲 Цитата дня</button>
+        </div>
+    </footer>
+
+    <script src="lang.js"></script>
     <script src="script.js"></script>
     <script>
         (function() {
             "use strict";
-            // IndexedDB
             let db;
             const DB_NAME = 'AnimeWorldDB', DB_VERSION = 1, STORE_NAME = 'videos';
             function initDB() {
                 return new Promise((res, rej) => {
                     if (db) return res(db);
                     const r = indexedDB.open(DB_NAME, DB_VERSION);
-                    r.onupgradeneeded = e => { const d = e.target.result; if (!d.objectStoreNames.contains(STORE_NAME)) d.createObjectStore(STORE_NAME, { keyPath: 'id' }); };
+                    r.onupgradeneeded = e => {
+                        const d = e.target.result;
+                        if (!d.objectStoreNames.contains(STORE_NAME)) d.createObjectStore(STORE_NAME, { keyPath: 'id' });
+                    };
                     r.onsuccess = e => { db = e.target.result; res(db); };
                     r.onerror = e => rej(e.target.error);
                 });
@@ -101,7 +128,7 @@
             const anime = animeData.find(a => a.id === animeId);
             if (!anime) { document.getElementById('animeTitle').textContent = 'Аниме не найдено'; throw new Error('Anime not found'); }
 
-            document.getElementById('animeTitle').textContent = `${anime.title} - Серия ${episodeNum}`;
+            document.getElementById('animeTitle').textContent = `${anime.title} - ${window.getTranslation?.('player.episode') || 'Серия'} ${episodeNum}`;
             document.getElementById('animeDescription').textContent = anime.description || '';
 
             const video = anime.videos?.find(v => v.episode === episodeNum);
@@ -118,23 +145,24 @@
                 if (video.type === 'url') {
                     source.src = video.url;
                     player.load();
-                    window.addToHistory?.(animeId, episodeNum); // ЗАПИСЬ В ИСТОРИЮ
+                    window.addToHistory?.(animeId, episodeNum);
                 } else if (video.type === 'indexeddb' && video.id) {
                     loadVideoFromDB(video.id)
                         .then(url => {
                             source.src = url;
                             player.load();
-                            window.addToHistory?.(animeId, episodeNum); // ЗАПИСЬ В ИСТОРИЮ
+                            window.addToHistory?.(animeId, episodeNum);
                         })
                         .catch(console.error);
                 }
             }
 
-            // Список серий
             let episodesHtml = '';
             for (let i = 1; i <= (anime.episodes || 12); i++) {
                 const has = anime.videos?.some(v => v.episode === i);
-                episodesHtml += `<span class="episode-item ${i === episodeNum ? 'active' : ''}" onclick="window.location.href='video-player.html?id=${animeId}&episode=${i}'">Серия ${i}${has ? ' ✅' : ''}</span>`;
+                episodesHtml += `<span class="episode-item ${i === episodeNum ? 'active' : ''}" onclick="window.location.href='video-player.html?id=${animeId}&episode=${i}'">
+                    ${window.getTranslation?.('player.episode') || 'Серия'} ${i}${has ? ' ✅' : ''}
+                </span>`;
             }
             document.getElementById('episodes').innerHTML = episodesHtml;
 
@@ -182,12 +210,13 @@
                 lastTap = now;
             });
 
-            // Бургер-меню
             const burger = document.getElementById('burgerBtn'), nav = document.getElementById('navLinks');
             if (burger && nav) {
                 burger.addEventListener('click', function () { this.classList.toggle('active'); nav.classList.toggle('active'); document.body.style.overflow = nav.classList.contains('active') ? 'hidden' : ''; });
                 nav.querySelectorAll('a').forEach(link => link.addEventListener('click', () => { burger.classList.remove('active'); nav.classList.remove('active'); document.body.style.overflow = ''; }));
             }
+
+            if (typeof updateAllTexts === 'function') updateAllTexts();
         })();
     </script>
 </body>

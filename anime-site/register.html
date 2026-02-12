@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>Регистрация - AnimeWorld</title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -10,22 +10,31 @@
     <header>
         <nav class="navbar">
             <div class="logo">
-                <a href="index.html" style="text-decoration: none; color: inherit;">
-                    <h1>🍥 AnimeWorld</h1>
-                </a>
+                <a href="index.html"><h1>🍥 AnimeWorld</h1></a>
             </div>
-            <div class="nav-links">
+            <button class="burger-btn" id="burgerBtn"><span></span><span></span><span></span></button>
+            <div class="nav-links" id="navLinks">
                 <a href="index.html">Главная</a>
             </div>
             <div class="nav-controls">
+                <div id="userMenu" class="user-menu"></div>
+                <div class="language-switcher">
+                    <button class="lang-btn" onclick="if(typeof setLanguage==='function') setLanguage('ru')">🇷🇺 Русский</button>
+                    <button class="lang-btn" onclick="if(typeof setLanguage==='function') setLanguage('en')">🇬🇧 English</button>
+                </div>
                 <div class="theme-switcher">
-                    <button class="theme-btn" data-theme="default" onclick="setTheme('default')" title="Светлая">☀️</button>
-                    <button class="theme-btn" data-theme="dark" onclick="setTheme('dark')" title="Тёмная">🌙</button>
-                    <button class="theme-btn" data-theme="blue" onclick="setTheme('blue')" title="Синяя">🔵</button>
-                    <button class="theme-btn" data-theme="purple" onclick="setTheme('purple')" title="Фиолетовая">🟣</button>
-                    <button class="theme-btn" data-theme="cyberpunk" onclick="setTheme('cyberpunk')" title="Киберпанк">🤖</button>
-                    <button class="theme-btn" data-theme="sunset" onclick="setTheme('sunset')" title="Закат">🌅</button>
-                    <button class="theme-btn" data-theme="forest" onclick="setTheme('forest')" title="Лесная">🌲</button>
+                    <button class="theme-btn" data-theme="default" onclick="setTheme('default')">☀️</button>
+                    <button class="theme-btn" data-theme="dark" onclick="setTheme('dark')">🌙</button>
+                    <button class="theme-btn" data-theme="blue" onclick="setTheme('blue')">🔵</button>
+                    <button class="theme-btn" data-theme="purple" onclick="setTheme('purple')">🟣</button>
+                    <button class="theme-btn" data-theme="cyberpunk" onclick="setTheme('cyberpunk')">🤖</button>
+                    <button class="theme-btn" data-theme="sunset" onclick="setTheme('sunset')">🌅</button>
+                    <button class="theme-btn" data-theme="forest" onclick="setTheme('forest')">🌲</button>
+                    <button class="theme-btn" data-theme="ocean" onclick="setTheme('ocean')">🌊</button>
+                    <button class="theme-btn" data-theme="candy" onclick="setTheme('candy')">🍬</button>
+                    <button class="theme-btn" data-theme="coffee" onclick="setTheme('coffee')">☕</button>
+                    <button class="theme-btn" data-theme="mint" onclick="setTheme('mint')">🌿</button>
+                    <button class="theme-btn" data-theme="lavender" onclick="setTheme('lavender')">💜</button>
                 </div>
             </div>
         </nav>
@@ -66,9 +75,10 @@
                 const password = document.getElementById('password').value;
                 const confirm = document.getElementById('confirmPassword').value;
 
+                // Валидация
                 if (!username || !email || !password) {
-                    if (typeof window.showAlertModal === 'function') {
-                        window.showAlertModal('❌ Заполните все поля!');
+                    if (typeof window.showNotification === 'function') {
+                        window.showNotification('❌ Заполните все поля!', 'error');
                     } else {
                         alert('❌ Заполните все поля!');
                     }
@@ -76,8 +86,8 @@
                 }
 
                 if (password !== confirm) {
-                    if (typeof window.showAlertModal === 'function') {
-                        window.showAlertModal('❌ Пароли не совпадают!');
+                    if (typeof window.showNotification === 'function') {
+                        window.showNotification('❌ Пароли не совпадают!', 'error');
                     } else {
                         alert('❌ Пароли не совпадают!');
                     }
@@ -85,8 +95,8 @@
                 }
 
                 if (password.length < 6) {
-                    if (typeof window.showAlertModal === 'function') {
-                        window.showAlertModal('❌ Пароль должен быть не менее 6 символов');
+                    if (typeof window.showNotification === 'function') {
+                        window.showNotification('❌ Пароль должен быть не менее 6 символов', 'error');
                     } else {
                         alert('❌ Пароль должен быть не менее 6 символов');
                     }
@@ -95,9 +105,10 @@
 
                 let users = JSON.parse(localStorage.getItem('users') || '[]');
 
+                // Проверка уникальности
                 if (users.some(u => u.username === username)) {
-                    if (typeof window.showAlertModal === 'function') {
-                        window.showAlertModal('❌ Пользователь с таким логином уже существует!');
+                    if (typeof window.showNotification === 'function') {
+                        window.showNotification('❌ Пользователь с таким логином уже существует!', 'error');
                     } else {
                         alert('❌ Пользователь с таким логином уже существует!');
                     }
@@ -105,14 +116,15 @@
                 }
 
                 if (users.some(u => u.email === email)) {
-                    if (typeof window.showAlertModal === 'function') {
-                        window.showAlertModal('❌ Пользователь с таким email уже зарегистрирован!');
+                    if (typeof window.showNotification === 'function') {
+                        window.showNotification('❌ Пользователь с таким email уже зарегистрирован!', 'error');
                     } else {
                         alert('❌ Пользователь с таким email уже зарегистрирован!');
                     }
                     return;
                 }
 
+                // Создание нового пользователя
                 const newUser = {
                     id: Date.now(),
                     username,
@@ -121,24 +133,23 @@
                     role: 'user',
                     avatar: '👤',
                     favorites: [],
+                    history: [],
                     createdAt: new Date().toISOString()
                 };
 
                 users.push(newUser);
                 localStorage.setItem('users', JSON.stringify(users));
 
-                function showSuccessAndRedirect() {
-                    if (typeof window.showAlertModal === 'function') {
-                        window.showAlertModal('✅ Регистрация успешна! Пожалуйста, войдите в аккаунт.', function() {
-                            window.location.href = 'login.html';
-                        });
-                    } else {
-                        alert('✅ Регистрация успешна! Пожалуйста, войдите в аккаунт.');
-                        window.location.href = 'login.html';
-                    }
+                // Уведомление об успехе и переход на логин
+                if (typeof window.showNotification === 'function') {
+                    window.showNotification('✅ Регистрация успешна! Пожалуйста, войдите в аккаунт.', 'success');
+                } else {
+                    alert('✅ Регистрация успешна! Пожалуйста, войдите в аккаунт.');
                 }
 
-                setTimeout(showSuccessAndRedirect, 100);
+                setTimeout(() => {
+                    window.location.href = 'login.html';
+                }, 2000);
             });
         })();
     </script>

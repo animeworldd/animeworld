@@ -13,29 +13,25 @@
         <nav class="navbar">
             <div class="logo">
                 <a href="index.html">
-                    <h1>🍥 AnimeWorld</h1>
+                    <h1 data-lang="app.name">🍥 AnimeWorld</h1>
                 </a>
             </div>
-
-            <!-- Бургер-кнопка для мобильных -->
-            <button class="burger-btn" id="burgerBtn" aria-label="Меню">
-                <span></span>
-                <span></span>
-                <span></span>
+            <button class="burger-btn" id="burgerBtn">
+                <span></span><span></span><span></span>
             </button>
-
-            <!-- Навигационные ссылки -->
             <div class="nav-links" id="navLinks">
-                <a href="index.html" class="active">Главная</a>
+                <a href="index.html" class="active" data-lang="nav.home">Главная</a>
             </div>
-
-            <!-- Поиск, пользовательское меню, темы -->
             <div class="nav-controls">
                 <div class="search-box">
-                    <input type="text" id="searchInput" placeholder="Поиск аниме...">
-                    <button id="searchBtn">🔍</button>
+                    <input type="text" id="searchInput" data-lang="search.placeholder" placeholder="Поиск аниме...">
+                    <button id="searchBtn" data-lang="search.button">🔍</button>
                 </div>
                 <div id="userMenu" class="user-menu"></div>
+                <div class="language-switcher">
+                    <button class="lang-btn" data-lang="ru" onclick="setLanguage('ru')">🇷🇺 Русский</button>
+                    <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">🇬🇧 English</button>
+                </div>
                 <div class="theme-switcher">
                     <button class="theme-btn" data-theme="default" onclick="setTheme('default')" title="Светлая">☀️</button>
                     <button class="theme-btn" data-theme="dark" onclick="setTheme('dark')" title="Тёмная">🌙</button>
@@ -44,12 +40,16 @@
                     <button class="theme-btn" data-theme="cyberpunk" onclick="setTheme('cyberpunk')" title="Киберпанк">🤖</button>
                     <button class="theme-btn" data-theme="sunset" onclick="setTheme('sunset')" title="Закат">🌅</button>
                     <button class="theme-btn" data-theme="forest" onclick="setTheme('forest')" title="Лесная">🌲</button>
+                    <button class="theme-btn" data-theme="ocean" onclick="setTheme('ocean')" title="Океан">🌊</button>
+                    <button class="theme-btn" data-theme="candy" onclick="setTheme('candy')" title="Карамель">🍬</button>
+                    <button class="theme-btn" data-theme="coffee" onclick="setTheme('coffee')" title="Кофе">☕</button>
+                    <button class="theme-btn" data-theme="mint" onclick="setTheme('mint')" title="Мята">🌿</button>
+                    <button class="theme-btn" data-theme="lavender" onclick="setTheme('lavender')" title="Лаванда">💜</button>
                 </div>
             </div>
         </nav>
     </header>
 
-    <!-- Контейнер для фильтров – будет заполнен динамически -->
     <section class="filters"></section>
 
     <main>
@@ -57,53 +57,13 @@
     </main>
 
     <footer>
-        <p>© 2026 AnimeWorld</p>
+        <p data-lang="footer.copyright">© 2026 AnimeWorld</p>
+        <div class="quote-container">
+            <button id="randomQuoteBtn" class="quote-btn" onclick="showRandomQuote()" data-lang="quote.button">🎲 Цитата дня</button>
+        </div>
     </footer>
 
-    <!-- Подключаем основной скрипт -->
+    <script src="lang.js"></script>
     <script src="script.js"></script>
-
-    <!-- Обработчик бургер-меню (можно разместить здесь или в script.js) -->
-    <script>
-        (function() {
-            "use strict";
-            
-            const burgerBtn = document.getElementById('burgerBtn');
-            const navLinks = document.getElementById('navLinks');
-
-            if (burgerBtn && navLinks) {
-                burgerBtn.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    this.classList.toggle('active');
-                    navLinks.classList.toggle('active');
-                    
-                    // Блокировка прокрутки при открытом меню (опционально)
-                    if (navLinks.classList.contains('active')) {
-                        document.body.style.overflow = 'hidden';
-                    } else {
-                        document.body.style.overflow = '';
-                    }
-                });
-
-                // Закрытие меню при клике на ссылку
-                navLinks.querySelectorAll('a').forEach(link => {
-                    link.addEventListener('click', function() {
-                        burgerBtn.classList.remove('active');
-                        navLinks.classList.remove('active');
-                        document.body.style.overflow = '';
-                    });
-                });
-
-                // Закрытие меню при изменении размера окна (если стало больше 768px)
-                window.addEventListener('resize', function() {
-                    if (window.innerWidth > 768) {
-                        burgerBtn.classList.remove('active');
-                        navLinks.classList.remove('active');
-                        document.body.style.overflow = '';
-                    }
-                });
-            }
-        })();
-    </script>
 </body>
 </html>

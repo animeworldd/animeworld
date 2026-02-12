@@ -242,6 +242,41 @@ header {
     transform: translateY(-2px);
 }
 
+/* ========== ПЕРЕКЛЮЧАТЕЛЬ ЯЗЫКОВ ========== */
+.language-switcher {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-left: 0.5rem;
+}
+
+.lang-btn {
+    padding: 0.4rem 0.8rem;
+    border: 2px solid transparent;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.2);
+    backdrop-filter: blur(5px);
+    color: var(--text-dark);
+    font-weight: 600;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    border: 1px solid rgba(108,92,231,0.3);
+}
+
+.lang-btn:hover {
+    background: var(--primary);
+    color: white;
+    transform: translateY(-2px);
+    border-color: var(--primary-dark);
+}
+
+.lang-btn.active {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary-dark);
+}
+
 /* ========== ТЕМЫ ========== */
 .theme-switcher {
     display: flex;
@@ -393,6 +428,32 @@ footer {
     margin-top: 3rem;
 }
 
+/* ========== КНОПКА ЦИТАТЫ ========== */
+.quote-container {
+    margin-top: 1.5rem;
+    text-align: center;
+}
+
+.quote-btn {
+    padding: 0.8rem 2rem;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    border: 1px solid rgba(255,255,255,0.3);
+    backdrop-filter: blur(5px);
+}
+
+.quote-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
 /* ========== АНИМАЦИИ ========== */
 @keyframes fadeInUp {
     from { opacity: 0; transform: translateY(30px); }
@@ -406,36 +467,66 @@ footer {
     from { opacity: 0; transform: translateY(-50px); }
     to { opacity: 1; transform: translateY(0); }
 }
+@keyframes slideInRight {
+    from { opacity: 0; transform: translateX(50px); }
+    to { opacity: 1; transform: translateX(0); }
+}
 
-/* ========== УВЕДОМЛЕНИЯ (ГАРАНТИРОВАННО ПО ЦЕНТРУ) ========== */
+/* ========== УВЕДОМЛЕНИЯ (ПРАВЫЙ ВЕРХНИЙ УГОЛ) ========== */
+#notification-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 999999;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    pointer-events: none;
+}
+
 .notification-dynamic {
-    position: fixed !important;
-    top: 50% !important;
-    left: 50% !important;
-    transform: translate(-50%, -50%) !important;
-    padding: 1rem 2rem !important;
-    background: #00b894 !important;
-    color: white !important;
-    border-radius: 10px !important;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3) !important;
-    z-index: 9999999 !important;
-    text-align: center !important;
-    font-weight: 600 !important;
-    font-size: 1.1rem !important;
-    border: 2px solid rgba(255,255,255,0.3) !important;
-    backdrop-filter: blur(5px) !important;
-    animation: fadeInCenter 0.3s ease !important;
-    max-width: 80% !important;
-    word-break: break-word !important;
+    pointer-events: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.8rem 1.2rem;
+    background: #00b894;
+    color: white;
+    border-radius: 8px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    font-weight: 500;
+    font-size: 0.95rem;
+    border: 1px solid rgba(255,255,255,0.2);
+    backdrop-filter: blur(10px);
+    animation: slideInRight 0.3s ease;
+    max-width: 400px;
+    word-break: break-word;
 }
 
 .notification-dynamic.error {
-    background: #ff7675 !important;
+    background: #ff7675;
 }
 
 .notification-dynamic.warning {
-    background: #fdcb6e !important;
-    color: #333 !important;
+    background: #fdcb6e;
+    color: #333;
+}
+
+.notification-close {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0 5px;
+    line-height: 1;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+}
+
+.notification-close:hover {
+    opacity: 1;
 }
 
 /* ========== АВТОРИЗАЦИЯ ========== */
@@ -578,7 +669,7 @@ footer {
     margin-top: 0.5rem;
 }
 
-/* ========== ВИДЕО ПЛЕЕР (ПОЛНОСТЬЮ КАСТОМНЫЙ) ========== */
+/* ========== ВИДЕО ПЛЕЕР ========== */
 .video-container {
     max-width: 1000px;
     margin: 2rem auto;
@@ -884,6 +975,20 @@ video {
     justify-content: center;
     margin-left: 0;
 }
+.admin-language-switcher {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #eee;
+}
+.admin-language-switcher p {
+    margin-bottom: 0.8rem;
+    color: #666;
+    font-size: 0.9rem;
+}
+.admin-language-switcher .language-switcher {
+    justify-content: center;
+    margin-left: 0;
+}
 .form-hint {
     color: #666;
     font-size: 0.85rem;
@@ -1175,6 +1280,66 @@ body.theme-forest {
     --text-dark: #1b3b1b;
     --text-light: #2e5c2e;
 }
+body.theme-ocean {
+    --primary: #00cec9;
+    --primary-dark: #00b5b0;
+    --secondary: #81ecec;
+    --gradient: linear-gradient(135deg, #00cec9 0%, #00b5b0 100%);
+    --dark: #2d3436;
+    --light: #e0f7fa;
+    --bg-overall: linear-gradient(135deg, #00cec9 0%, #00b5b0 100%);
+    --card-bg: #ffffff;
+    --text-dark: #1e272e;
+    --text-light: #485460;
+}
+body.theme-candy {
+    --primary: #ff7675;
+    --primary-dark: #ff5252;
+    --secondary: #fdcb6e;
+    --gradient: linear-gradient(135deg, #ff7675 0%, #fdcb6e 100%);
+    --dark: #2d3436;
+    --light: #fff0e0;
+    --bg-overall: linear-gradient(135deg, #ff7675 0%, #fdcb6e 100%);
+    --card-bg: #ffffff;
+    --text-dark: #2d3436;
+    --text-light: #636e72;
+}
+body.theme-coffee {
+    --primary: #b2845c;
+    --primary-dark: #9c6b4b;
+    --secondary: #e5c8a2;
+    --gradient: linear-gradient(135deg, #6b4f3c 0%, #9c7e5c 100%);
+    --dark: #3a2a1f;
+    --light: #f5e6d3;
+    --bg-overall: linear-gradient(135deg, #6b4f3c 0%, #9c7e5c 100%);
+    --card-bg: #fff8ef;
+    --text-dark: #3a2a1f;
+    --text-light: #6b4f3c;
+}
+body.theme-mint {
+    --primary: #2ecc71;
+    --primary-dark: #27ae60;
+    --secondary: #a8e6cf;
+    --gradient: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+    --dark: #1e3a2a;
+    --light: #e8f5e9;
+    --bg-overall: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+    --card-bg: #f1f8e9;
+    --text-dark: #1e3a2a;
+    --text-light: #2e7d32;
+}
+body.theme-lavender {
+    --primary: #9b59b6;
+    --primary-dark: #8e44ad;
+    --secondary: #d7bde2;
+    --gradient: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%);
+    --dark: #2c1a33;
+    --light: #f3e5f5;
+    --bg-overall: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%);
+    --card-bg: #f9f0ff;
+    --text-dark: #2c1a33;
+    --text-light: #6c3483;
+}
 
 /* ========== АДАПТАЦИЯ ДЛЯ МОБИЛЬНЫХ ========== */
 @media (max-width: 768px) {
@@ -1231,6 +1396,19 @@ body.theme-forest {
         justify-content: center;
         margin-top: 0.5rem;
     }
+    .language-switcher {
+        margin-left: 0;
+        justify-content: center;
+        width: 100%;
+    }
+    .lang-btn {
+        padding: 0.3rem 0.6rem;
+        font-size: 0.8rem;
+    }
+    .quote-btn {
+        font-size: 0.9rem;
+        padding: 0.6rem 1.2rem;
+    }
     .admin-wrapper {
         flex-direction: column;
     }
@@ -1279,10 +1457,12 @@ body.theme-forest {
     .admin-nav.active {
         display: block;
     }
-    .admin-theme-switcher {
+    .admin-theme-switcher,
+    .admin-language-switcher {
         display: none;
     }
-    .admin-theme-switcher.active {
+    .admin-theme-switcher.active,
+    .admin-language-switcher.active {
         display: block;
     }
     .form-row {
@@ -1310,5 +1490,15 @@ body.theme-forest {
         width: 40px;
         height: 40px;
         font-size: 1.1rem;
+    }
+    #notification-container {
+        top: 10px;
+        right: 10px;
+        max-width: 90%;
+    }
+    .notification-dynamic {
+        padding: 0.7rem 1rem;
+        font-size: 0.9rem;
+        max-width: 100%;
     }
 }

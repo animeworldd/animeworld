@@ -10,7 +10,9 @@
     <div class="admin-wrapper">
         <aside class="admin-sidebar">
             <div class="admin-logo">
-                <a href="index.html"><h2>🍥 AnimeWorld</h2></a>
+                <a href="index.html">
+                    <h2>🍥 AnimeWorld</h2>
+                </a>
                 <button class="admin-burger" id="adminBurgerBtn">
                     <span></span><span></span><span></span>
                 </button>
@@ -25,28 +27,51 @@
             </nav>
             <div class="admin-theme-switcher">
                 <p>🎨 Тема</p>
-                <div class="theme-switcher">
-                    <button class="theme-btn" data-theme="default" onclick="setTheme('default')">☀️</button>
-                    <button class="theme-btn" data-theme="dark" onclick="setTheme('dark')">🌙</button>
-                    <button class="theme-btn" data-theme="blue" onclick="setTheme('blue')">🔵</button>
-                    <button class="theme-btn" data-theme="purple" onclick="setTheme('purple')">🟣</button>
-                    <button class="theme-btn" data-theme="cyberpunk" onclick="setTheme('cyberpunk')">🤖</button>
-                    <button class="theme-btn" data-theme="sunset" onclick="setTheme('sunset')">🌅</button>
-                    <button class="theme-btn" data-theme="forest" onclick="setTheme('forest')">🌲</button>
+                <div class="theme-switcher" style="justify-content: center;">
+                    <button class="theme-btn" data-theme="default" onclick="window.setTheme('default')">☀️</button>
+                    <button class="theme-btn" data-theme="dark" onclick="window.setTheme('dark')">🌙</button>
+                    <button class="theme-btn" data-theme="blue" onclick="window.setTheme('blue')">🔵</button>
+                    <button class="theme-btn" data-theme="purple" onclick="window.setTheme('purple')">🟣</button>
+                    <button class="theme-btn" data-theme="cyberpunk" onclick="window.setTheme('cyberpunk')">🤖</button>
+                    <button class="theme-btn" data-theme="sunset" onclick="window.setTheme('sunset')">🌅</button>
+                    <button class="theme-btn" data-theme="forest" onclick="window.setTheme('forest')">🌲</button>
+                    <button class="theme-btn" data-theme="ocean" onclick="window.setTheme('ocean')">🌊</button>
+                    <button class="theme-btn" data-theme="candy" onclick="window.setTheme('candy')">🍬</button>
+                    <button class="theme-btn" data-theme="coffee" onclick="window.setTheme('coffee')">☕</button>
+                    <button class="theme-btn" data-theme="mint" onclick="window.setTheme('mint')">🌿</button>
+                    <button class="theme-btn" data-theme="lavender" onclick="window.setTheme('lavender')">💜</button>
+                </div>
+            </div>
+            <div class="admin-language-switcher">
+                <p>🌐 Язык</p>
+                <div class="language-switcher" style="justify-content: center;">
+                    <button class="lang-btn" onclick="if(typeof setLanguage==='function') setLanguage('ru')">🇷🇺 Русский</button>
+                    <button class="lang-btn" onclick="if(typeof setLanguage==='function') setLanguage('en')">🇬🇧 English</button>
                 </div>
             </div>
             <button id="logoutBtn" class="admin-logout-btn">🚪 Выйти</button>
         </aside>
+
         <main class="admin-main">
             <!-- ДАШБОРД -->
             <section id="dashboard" class="admin-section active">
                 <h1>📊 Дашборд</h1>
                 <div class="stats-grid">
-                    <div class="stat-card"><h3 id="totalAnime">0</h3><p>Всего аниме</p></div>
-                    <div class="stat-card"><h3 id="totalUsers">0</h3><p>Пользователей</p></div>
-                    <div class="stat-card"><h3 id="totalEpisodes">0</h3><p>Загружено серий</p></div>
+                    <div class="stat-card">
+                        <h3 id="totalAnime">0</h3>
+                        <p>Всего аниме</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3 id="totalUsers">0</h3>
+                        <p>Пользователей</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3 id="totalEpisodes">0</h3>
+                        <p>Загружено серий</p>
+                    </div>
                 </div>
             </section>
+
             <!-- УПРАВЛЕНИЕ АНИМЕ -->
             <section id="anime" class="admin-section">
                 <h1>🎬 Управление аниме</h1>
@@ -54,16 +79,38 @@
                     <h2>➕ Добавить новое аниме</h2>
                     <form id="addAnimeForm">
                         <div class="form-row">
-                            <div><label>Название</label><input type="text" id="title" placeholder="Введите название" required></div>
-                            <div><label>Жанр</label><select id="genre" required></select></div>
+                            <div>
+                                <label>Название</label>
+                                <input type="text" id="title" placeholder="Введите название" required>
+                            </div>
+                            <div>
+                                <label>Жанр</label>
+                                <select id="genre" required></select>
+                            </div>
                         </div>
                         <div class="form-row">
-                            <div><label>Год</label><input type="number" id="year" placeholder="2024" required></div>
-                            <div><label>Кол-во серий</label><input type="number" id="episodes" placeholder="12" required></div>
+                            <div>
+                                <label>Год</label>
+                                <input type="number" id="year" placeholder="2024" required>
+                            </div>
+                            <div>
+                                <label>Кол-во серий</label>
+                                <input type="number" id="episodes" placeholder="12" required>
+                            </div>
                         </div>
-                        <div><label>Рейтинг (0-10)</label><input type="number" id="rating" step="0.1" min="0" max="10" placeholder="8.5"></div>
-                        <div><label>Описание</label><textarea id="description" rows="4" placeholder="Введите описание..."></textarea></div>
-                        <div><label>🖼️ Постер</label><input type="file" id="animeImage" accept="image/*"></div>
+                        <div>
+                            <label>Рейтинг (0-10)</label>
+                            <input type="number" id="rating" step="0.1" min="0" max="10" placeholder="8.5">
+                        </div>
+                        <div>
+                            <label>Описание</label>
+                            <textarea id="description" rows="4" placeholder="Введите описание..."></textarea>
+                        </div>
+                        <div>
+                            <label>🖼️ Постер</label>
+                            <input type="file" id="animeImage" accept="image/*">
+                            <div class="form-hint">JPEG/PNG. Если не выбрано — заглушка.</div>
+                        </div>
                         <button type="submit" class="admin-submit-btn">✅ Добавить</button>
                     </form>
                 </div>
@@ -72,15 +119,23 @@
                     <div id="animeList"></div>
                 </div>
             </section>
+
             <!-- ЗАГРУЗКА ВИДЕО -->
             <section id="videos" class="admin-section">
                 <h1>📹 Загрузка видео</h1>
                 <div class="admin-form">
                     <h2>➕ Добавить серию</h2>
                     <form id="addVideoForm">
-                        <div><label>Аниме</label><select id="animeSelect" required></select></div>
-                        <div><label>Номер серии</label><input type="number" id="episode" placeholder="1" min="1" required></div>
-                        <div><label>Способ загрузки</label>
+                        <div>
+                            <label>Аниме</label>
+                            <select id="animeSelect" required></select>
+                        </div>
+                        <div>
+                            <label>Номер серии</label>
+                            <input type="number" id="episode" placeholder="1" min="1" required>
+                        </div>
+                        <div>
+                            <label>Способ загрузки</label>
                             <div style="display:flex; gap:1.5rem;">
                                 <label><input type="radio" name="videoType" value="file" checked> 📁 Файл</label>
                                 <label><input type="radio" name="videoType" value="url"> 🔗 Ссылка</label>
@@ -103,6 +158,7 @@
                     <div id="recentVideos"></div>
                 </div>
             </section>
+
             <!-- ЖАНРЫ -->
             <section id="genres" class="admin-section">
                 <h1>🏷️ Управление жанрами</h1>
@@ -118,16 +174,20 @@
                     <div id="genresList" class="genre-list"></div>
                 </div>
             </section>
+
             <!-- ПОЛЬЗОВАТЕЛИ -->
             <section id="users" class="admin-section">
                 <h1>👥 Пользователи</h1>
                 <div class="admin-list">
-                    <div><input type="text" id="userSearch" placeholder="🔍 Поиск по логину или email"></div>
+                    <div>
+                        <input type="text" id="userSearch" placeholder="🔍 Поиск по логину или email">
+                    </div>
                     <div id="usersList"></div>
                 </div>
             </section>
         </main>
     </div>
+
     <!-- МОДАЛКА УПРАВЛЕНИЯ СЕРИЯМИ -->
     <div id="episodeModal" class="modal">
         <div class="modal-content">
@@ -138,6 +198,7 @@
             <div id="episodeList"></div>
         </div>
     </div>
+
     <!-- МОДАЛКА РЕДАКТИРОВАНИЯ АНИМЕ -->
     <div id="editAnimeModal" class="modal">
         <div class="modal-content modal-lg">
@@ -148,16 +209,38 @@
             <form id="editAnimeForm">
                 <input type="hidden" id="editId">
                 <div class="form-row">
-                    <div><label>Название</label><input type="text" id="editTitle" required></div>
-                    <div><label>Жанр</label><select id="editGenre" required></select></div>
+                    <div>
+                        <label>Название</label>
+                        <input type="text" id="editTitle" required>
+                    </div>
+                    <div>
+                        <label>Жанр</label>
+                        <select id="editGenre" required></select>
+                    </div>
                 </div>
                 <div class="form-row">
-                    <div><label>Год</label><input type="number" id="editYear" required></div>
-                    <div><label>Кол-во серий</label><input type="number" id="editEpisodes" required></div>
+                    <div>
+                        <label>Год</label>
+                        <input type="number" id="editYear" required>
+                    </div>
+                    <div>
+                        <label>Кол-во серий</label>
+                        <input type="number" id="editEpisodes" required>
+                    </div>
                 </div>
-                <div><label>Рейтинг</label><input type="number" id="editRating" step="0.1" min="0" max="10"></div>
-                <div><label>Описание</label><textarea id="editDescription" rows="4"></textarea></div>
-                <div><label>🖼️ Постер</label><input type="file" id="editImage" accept="image/*"></div>
+                <div>
+                    <label>Рейтинг</label>
+                    <input type="number" id="editRating" step="0.1" min="0" max="10">
+                </div>
+                <div>
+                    <label>Описание</label>
+                    <textarea id="editDescription" rows="4"></textarea>
+                </div>
+                <div>
+                    <label>🖼️ Постер</label>
+                    <input type="file" id="editImage" accept="image/*">
+                    <div class="form-hint">Оставьте пустым, чтобы не менять постер.</div>
+                </div>
                 <div style="display:flex; gap:1rem; justify-content:flex-end;">
                     <button type="button" onclick="closeEditModal()" class="modal-btn cancel">Отмена</button>
                     <button type="submit" class="modal-btn confirm">💾 Сохранить</button>
@@ -165,149 +248,211 @@
             </form>
         </div>
     </div>
+
     <script src="script.js"></script>
     <script>
         (function() {
             "use strict";
+
             // ---------- ПРОВЕРКА АДМИНА ----------
             const user = JSON.parse(localStorage.getItem('currentUser') || 'null');
             if (!user || user.role !== 'admin') {
-                window.showAlertModal?.('⛔ Доступ запрещён!', () => window.location.href='index.html') 
-                    || (alert('⛔ Доступ запрещён!'), window.location.href='index.html');
+                if (typeof window.showAlertModal === 'function') {
+                    window.showAlertModal('⛔ Доступ запрещён! Только для администратора.', () => window.location.href = 'index.html');
+                } else {
+                    alert('⛔ Доступ запрещён!');
+                    window.location.href = 'index.html';
+                }
                 return;
             }
 
-            // ---------- INDEXEDDB ----------
+            // ---------- ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ ----------
             let db;
             const DB_NAME = 'AnimeWorldDB';
             const DB_VERSION = 1;
             const STORE_NAME = 'videos';
+
+            // ---------- ИНИЦИАЛИЗАЦИЯ INDEXEDDB ----------
             function initIndexedDB() {
                 return new Promise((resolve, reject) => {
                     if (db) return resolve(db);
-                    const r = indexedDB.open(DB_NAME, DB_VERSION);
-                    r.onupgradeneeded = e => {
-                        const d = e.target.result;
-                        if (!d.objectStoreNames.contains(STORE_NAME)) {
-                            const s = d.createObjectStore(STORE_NAME, { keyPath: 'id' });
-                            s.createIndex('animeId', 'animeId', { unique: false });
-                            s.createIndex('episode', 'episode', { unique: false });
+                    const request = indexedDB.open(DB_NAME, DB_VERSION);
+                    request.onupgradeneeded = (e) => {
+                        const database = e.target.result;
+                        if (!database.objectStoreNames.contains(STORE_NAME)) {
+                            const store = database.createObjectStore(STORE_NAME, { keyPath: 'id' });
+                            store.createIndex('animeId', 'animeId', { unique: false });
+                            store.createIndex('episode', 'episode', { unique: false });
                         }
                     };
-                    r.onsuccess = e => { db = e.target.result; resolve(db); };
-                    r.onerror = e => reject(e.target.error);
+                    request.onsuccess = (e) => {
+                        db = e.target.result;
+                        resolve(db);
+                    };
+                    request.onerror = (e) => reject(e.target.error);
                 });
             }
 
-            // ---------- ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ----------
-            const safeEscapeHtml = (t) => window.escapeHtml?.(t) || t || '';
-            const safeGenerateSvg = (t, w=50, h=70) => window.generateSvgThumbnail?.(t, w, h) || 'data:...';
-            const safeShowNotif = (m, t) => window.showNotification?.(m, t) || console.log(m);
-            const safeShowAlert = (m, c) => window.showAlertModal?.(m, c) || (alert(m), c?.());
-            const safeShowConfirm = (m, y, n) => window.showConfirmModal?.(m, y, n) || (confirm(m)?y?.():n?.());
+            // ---------- БЕЗОПАСНЫЕ ОБЁРТКИ ----------
+            const safeEscapeHtml = (text) => window.escapeHtml ? window.escapeHtml(text) : (text || '');
+            const safeGenerateSvg = (text, w = 50, h = 70) => window.generateSvgThumbnail ? window.generateSvgThumbnail(text, w, h) : 'data:image/svg+xml...';
+            const safeShowNotification = (msg, type) => window.showNotification ? window.showNotification(msg, type) : console.log(msg);
+            const safeShowAlert = (msg, cb) => window.showAlertModal ? window.showAlertModal(msg, cb) : (alert(msg), cb?.());
+            const safeShowConfirm = (msg, onConfirm, onCancel) => window.showConfirmModal ? window.showConfirmModal(msg, onConfirm, onCancel) : (confirm(msg) ? onConfirm?.() : onCancel?.());
 
-            // ---------- ЗАГРУЗКА ДАННЫХ (через глобальную переменную из script.js) ----------
+            // ---------- СТАТИСТИКА ----------
             function loadStats() {
-                const a = JSON.parse(localStorage.getItem('animeData') || '[]');
-                const u = JSON.parse(localStorage.getItem('users') || '[]');
-                let e = 0; a.forEach(a => e += a.videos?.length || 0);
-                document.getElementById('totalAnime').textContent = a.length;
-                document.getElementById('totalUsers').textContent = u.length;
-                document.getElementById('totalEpisodes').textContent = e;
+                const anime = JSON.parse(localStorage.getItem('animeData') || '[]');
+                const users = JSON.parse(localStorage.getItem('users') || '[]');
+                let eps = 0;
+                anime.forEach(a => eps += (a.videos?.length || 0));
+                document.getElementById('totalAnime').textContent = anime.length;
+                document.getElementById('totalUsers').textContent = users.length;
+                document.getElementById('totalEpisodes').textContent = eps;
             }
 
+            // ---------- СПИСОК АНИМЕ ----------
             function loadAnimeList() {
-                const c = document.getElementById('animeList'); if (!c) return;
-                const a = JSON.parse(localStorage.getItem('animeData') || '[]');
-                if (!a.length) { c.innerHTML = '<p style="color:#666;">Аниме пока нет</p>'; return; }
-                c.innerHTML = a.map(a => {
-                    const t = a.image || safeGenerateSvg(a.title);
-                    return `<div class="admin-list-item">
-                        <div class="item-info">
-                            <img src="${t}" alt="${safeEscapeHtml(a.title)}" onerror="this.src='${safeGenerateSvg(a.title)}'">
-                            <div><strong>${safeEscapeHtml(a.title)}</strong><span style="display:block; color:#666; font-size:0.9rem;">${a.episodes||0} серий • ${a.year||'?'}</span></div>
+                const container = document.getElementById('animeList');
+                if (!container) return;
+                const anime = JSON.parse(localStorage.getItem('animeData') || '[]');
+                if (anime.length === 0) {
+                    container.innerHTML = '<p style="color:#666;">Аниме пока нет</p>';
+                    return;
+                }
+                container.innerHTML = anime.map(a => {
+                    const thumb = a.image || safeGenerateSvg(a.title);
+                    return `
+                        <div class="admin-list-item">
+                            <div class="item-info">
+                                <img src="${thumb}" alt="${safeEscapeHtml(a.title)}" onerror="this.src='${safeGenerateSvg(a.title)}'">
+                                <div>
+                                    <strong>${safeEscapeHtml(a.title)}</strong>
+                                    <span style="display:block; color:#666; font-size:0.9rem;">${a.episodes || 0} серий • ${a.year || '?'}</span>
+                                </div>
+                            </div>
+                            <div class="item-actions">
+                                <button onclick="openEditModal(${a.id})" class="btn-small" style="background:#0984e3; color:white;">✏️ Редактировать</button>
+                                <button onclick="openEpisodeModal(${a.id}, '${safeEscapeHtml(a.title).replace(/'/g, "\\'")}')" class="btn-small" style="background:#00b894; color:white;">📹 Серии</button>
+                                <button onclick="deleteAnime(${a.id})" class="btn-small btn-delete">🗑️ Удалить</button>
+                            </div>
                         </div>
-                        <div class="item-actions">
-                            <button onclick="openEditModal(${a.id})" class="btn-small" style="background:#0984e3; color:white;">✏️ Редактировать</button>
-                            <button onclick="openEpisodeModal(${a.id}, '${safeEscapeHtml(a.title).replace(/'/g, "\\'")}')" class="btn-small" style="background:#00b894; color:white;">📹 Серии</button>
-                            <button onclick="deleteAnime(${a.id})" class="btn-small btn-delete">🗑️ Удалить</button>
-                        </div>
-                    </div>`}).join('');
+                    `;
+                }).join('');
             }
 
-            // УДАЛЕНИЕ АНИМЕ (с сохранением)
+            // ---------- УДАЛЕНИЕ АНИМЕ ----------
             window.deleteAnime = function(id) {
                 safeShowConfirm('Удалить это аниме? Все серии будут удалены.', async () => {
                     await initIndexedDB();
                     const tx = db.transaction(STORE_NAME, 'readwrite');
                     const store = tx.objectStore(STORE_NAME);
                     const index = store.index('animeId');
-                    index.getAllKeys(IDBKeyRange.only(id)).onsuccess = e => e.target.result.forEach(k => store.delete(k));
-                    let a = JSON.parse(localStorage.getItem('animeData') || '[]');
-                    a = a.filter(a => a.id !== id);
-                    // Сохраняем через централизованную функцию
-                    if (window.syncAnimeData) window.syncAnimeData(a);
-                    else localStorage.setItem('animeData', JSON.stringify(a));
-                    safeShowNotif('🗑️ Аниме удалено');
+                    index.getAllKeys(IDBKeyRange.only(id)).onsuccess = (e) => {
+                        e.target.result.forEach(key => store.delete(key));
+                    };
+                    let anime = JSON.parse(localStorage.getItem('animeData') || '[]');
+                    anime = anime.filter(a => a.id !== id);
+                    if (window.syncAnimeData) window.syncAnimeData(anime);
+                    else localStorage.setItem('animeData', JSON.stringify(anime));
+                    safeShowNotification('🗑️ Аниме удалено');
                     loadStats(); loadAnimeList(); loadAnimeSelect(); loadRecentVideos();
                 });
             };
 
+            // ---------- СЕЛЕКТ АНИМЕ ----------
             function loadAnimeSelect() {
-                const s = document.getElementById('animeSelect'); if (!s) return;
-                const a = JSON.parse(localStorage.getItem('animeData') || '[]');
-                s.innerHTML = '<option value="">— Выберите аниме —</option>' + 
-                    a.map(a => `<option value="${a.id}">${safeEscapeHtml(a.title)}</option>`).join('');
+                const select = document.getElementById('animeSelect');
+                if (!select) return;
+                const anime = JSON.parse(localStorage.getItem('animeData') || '[]');
+                select.innerHTML = '<option value="">— Выберите аниме —</option>' + 
+                    anime.map(a => `<option value="${a.id}">${safeEscapeHtml(a.title)}</option>`).join('');
             }
 
-            // ========== УПРАВЛЕНИЕ СЕРИЯМИ ==========
-            window.openEpisodeModal = function(animeId, animeTitle) {
+            // ---------- УПРАВЛЕНИЕ СЕРИЯМИ ----------
+            window.openEpisodeModal = async function(animeId, animeTitle) {
                 document.getElementById('modalAnimeTitle').textContent = `Серии: ${animeTitle}`;
-                const c = document.getElementById('episodeList');
-                const a = JSON.parse(localStorage.getItem('animeData') || '[]').find(a => a.id === animeId);
-                if (!a?.videos?.length) c.innerHTML = '<p style="color:#666;">Нет загруженных серий</p>';
-                else c.innerHTML = a.videos.sort((x,y)=>x.episode-y.episode).map(v =>
-                    `<div class="episode-item-admin">
-                        <span><strong>Серия ${v.episode}</strong> (${v.type==='indexeddb'?'📁 Файл':'🔗 Ссылка'})</span>
-                        <button onclick="deleteEpisode(${animeId}, ${v.episode})" class="btn-episode-delete">🗑️ Удалить</button>
-                    </div>`).join('');
+                const container = document.getElementById('episodeList');
+                const anime = JSON.parse(localStorage.getItem('animeData') || '[]');
+                const a = anime.find(a => a.id === animeId);
+                if (!a?.videos?.length) {
+                    container.innerHTML = '<p style="color:#666;">Нет загруженных серий</p>';
+                } else {
+                    container.innerHTML = a.videos
+                        .sort((x,y) => x.episode - y.episode)
+                        .map(v => {
+                            const sources = v.sources || (v.url ? [{ url: v.url, type: v.type || 'url', id: v.id, quality: 'Auto' }] : []);
+                            const qualities = sources.map(s => s.quality).join(', ');
+                            return `
+                                <div class="episode-item-admin">
+                                    <span><strong>Серия ${v.episode}</strong> (${qualities || 'SD'})</span>
+                                    <button onclick="deleteEpisode(${animeId}, ${v.episode})" class="btn-episode-delete">🗑️ Удалить</button>
+                                </div>
+                            `;
+                        }).join('');
+                }
                 document.getElementById('episodeModal').classList.add('active');
             };
-            window.closeEpisodeModal = () => document.getElementById('episodeModal').classList.remove('active');
+
+            window.closeEpisodeModal = function() {
+                document.getElementById('episodeModal').classList.remove('active');
+            };
+
             window.deleteEpisode = async function(animeId, episode) {
                 safeShowConfirm(`Удалить серию ${episode}?`, async () => {
-                    let a = JSON.parse(localStorage.getItem('animeData') || '[]');
-                    const an = a.find(a => a.id === animeId);
-                    if (an?.videos) {
-                        const v = an.videos.find(v => v.episode === episode);
-                        if (v?.type === 'indexeddb' && v?.id) {
+                    let anime = JSON.parse(localStorage.getItem('animeData') || '[]');
+                    const a = anime.find(a => a.id === animeId);
+                    if (a?.videos) {
+                        const video = a.videos.find(v => v.episode === episode);
+                        if (video?.sources) {
                             await initIndexedDB();
-                            db.transaction(STORE_NAME, 'readwrite').objectStore(STORE_NAME).delete(v.id);
+                            const tx = db.transaction(STORE_NAME, 'readwrite');
+                            const store = tx.objectStore(STORE_NAME);
+                            video.sources.forEach(s => { if (s.type === 'indexeddb' && s.id) store.delete(s.id); });
+                        } else if (video?.type === 'indexeddb' && video.id) {
+                            await initIndexedDB();
+                            db.transaction(STORE_NAME, 'readwrite').objectStore(STORE_NAME).delete(video.id);
                         }
-                        an.videos = an.videos.filter(v => v.episode !== episode);
-                        // Сохраняем через централизованную функцию
-                        if (window.syncAnimeData) window.syncAnimeData(a);
-                        else localStorage.setItem('animeData', JSON.stringify(a));
-                        safeShowNotif(`🗑️ Серия ${episode} удалена`);
+                        a.videos = a.videos.filter(v => v.episode !== episode);
+                        if (window.syncAnimeData) window.syncAnimeData(anime);
+                        else localStorage.setItem('animeData', JSON.stringify(anime));
+                        safeShowNotification(`🗑️ Серия ${episode} удалена`);
                         loadStats(); loadRecentVideos();
-                        if (document.getElementById('episodeModal').classList.contains('active'))
-                            window.openEpisodeModal(animeId, an.title);
+                        if (document.getElementById('episodeModal').classList.contains('active')) {
+                            openEpisodeModal(animeId, a.title);
+                        }
                     }
                 });
             };
 
-            // ========== ПОСЛЕДНИЕ ЗАГРУЗКИ ==========
+            // ---------- ПОСЛЕДНИЕ ЗАГРУЗКИ ----------
             async function loadRecentVideos() {
-                const c = document.getElementById('recentVideos'); if (!c) return;
-                const a = JSON.parse(localStorage.getItem('animeData') || '[]');
-                const vids = [];
-                a.forEach(a => a.videos?.forEach(v => vids.push({ animeId: a.id, animeTitle: a.title, episode: v.episode, type: v.type })));
-                const recent = vids.slice(-10).reverse();
-                c.innerHTML = recent.length ? recent.map(v =>
-                    `<div style="display:flex; justify-content:space-between; align-items:center; padding:0.8rem; border-bottom:1px solid #eee;">
-                        <span><strong>${safeEscapeHtml(v.animeTitle)}</strong> — Серия ${v.episode} (${v.type==='indexeddb'?'📁':'🔗'})</span>
+                const container = document.getElementById('recentVideos');
+                if (!container) return;
+                const anime = JSON.parse(localStorage.getItem('animeData') || '[]');
+                const videos = [];
+                await initIndexedDB();
+                anime.forEach(a => {
+                    if (a.videos) {
+                        a.videos.forEach(v => {
+                            videos.push({
+                                animeId: a.id,
+                                animeTitle: a.title,
+                                episode: v.episode,
+                                sources: v.sources || []
+                            });
+                        });
+                    }
+                });
+                const recent = videos.slice(-10).reverse();
+                container.innerHTML = recent.length ? recent.map(v => `
+                    <div style="display:flex; justify-content:space-between; align-items:center; padding:0.8rem; border-bottom:1px solid #eee;">
+                        <span>
+                            <strong>${safeEscapeHtml(v.animeTitle)}</strong> — Серия ${v.episode} (${v.sources.length} вар.)
+                        </span>
                         <button onclick="deleteEpisode(${v.animeId}, ${v.episode})" class="btn-small" style="background:#ff7675; color:white;">🗑️</button>
-                    </div>`).join('') : '<p style="color:#666;">Нет загруженных серий</p>';
+                    </div>
+                `).join('') : '<p style="color:#666;">Нет загруженных серий</p>';
             }
 
             // ---------- ПЕРЕКЛЮЧЕНИЕ ФАЙЛ/ССЫЛКА ----------
@@ -316,53 +461,88 @@
             const fileBlock = document.getElementById('fileUploadBlock');
             const urlBlock = document.getElementById('urlUploadBlock');
             if (fileRadio && urlRadio) {
-                fileRadio.addEventListener('change', ()=>{ fileBlock.style.display='block'; urlBlock.style.display='none'; });
-                urlRadio.addEventListener('change', ()=>{ fileBlock.style.display='none'; urlBlock.style.display='block'; });
+                fileRadio.addEventListener('change', () => { fileBlock.style.display = 'block'; urlBlock.style.display = 'none'; });
+                urlRadio.addEventListener('change', () => { fileBlock.style.display = 'none'; urlBlock.style.display = 'block'; });
             }
 
             // ---------- СОХРАНЕНИЕ ФАЙЛА В INDEXEDDB ----------
-            async function saveFileToIndexedDB(file, animeId, episode) {
+            async function saveFileToIndexedDB(file, animeId, episode, qualityLabel = 'SD') {
                 await initIndexedDB();
-                const id = `${animeId}_${episode}_${Date.now()}`;
+                const id = `${animeId}_${episode}_${qualityLabel}_${Date.now()}`;
                 const tx = db.transaction(STORE_NAME, 'readwrite');
                 const store = tx.objectStore(STORE_NAME);
-                return new Promise((res, rej) => {
-                    const r = store.put({ id, animeId, episode, file, name: file.name, type: file.type, size: file.size });
-                    r.onsuccess = () => res(id);
-                    r.onerror = () => rej(r.error);
+                return new Promise((resolve, reject) => {
+                    const request = store.put({
+                        id,
+                        animeId,
+                        episode,
+                        qualityLabel,
+                        file,
+                        name: file.name,
+                        type: file.type,
+                        size: file.size
+                    });
+                    request.onsuccess = () => resolve(id);
+                    request.onerror = () => reject(request.error);
                 });
             }
 
-            // ---------- ДОБАВЛЕНИЕ ВИДЕО ----------
+            // ---------- ЗАГРУЗКА ВИДЕО ----------
             document.getElementById('addVideoForm').addEventListener('submit', async (e) => {
                 e.preventDefault();
+
                 const animeId = parseInt(document.getElementById('animeSelect').value);
                 if (!animeId) { safeShowAlert('Выберите аниме!'); return; }
+
                 const episode = parseInt(document.getElementById('episode').value);
                 if (!episode || episode < 1) { safeShowAlert('Укажите корректный номер серии!'); return; }
+
                 const useFile = document.querySelector('input[name="videoType"]:checked')?.value === 'file';
+
                 if (useFile) {
                     const file = document.getElementById('videoFile').files[0];
                     if (!file) { safeShowAlert('Выберите видеофайл!'); return; }
-                    if (!file.type.includes('mp4') && !file.type.includes('webm')) { safeShowAlert('Только MP4/WebM!'); return; }
-                    if (file.size > 1024*1024*1024) { safeShowAlert('Файл >1 ГБ!'); return; }
-                    const pb = document.querySelector('.progress-bar');
-                    const pc = document.getElementById('uploadProgress');
-                    pc.style.display = 'block'; pb.style.width = '0%';
-                    let p = 0, i = setInterval(() => { p += 5; if (p <= 90) pb.style.width = p + '%'; }, 100);
+                    if (!file.type.includes('mp4') && !file.type.includes('webm')) {
+                        safeShowAlert('Поддерживаются только MP4 и WebM!');
+                        return;
+                    }
+                    if (file.size > 1024 * 1024 * 1024) {
+                        safeShowAlert('Файл слишком большой! Максимум 1 ГБ.');
+                        return;
+                    }
+
+                    const progressBar = document.querySelector('.progress-bar');
+                    const progressContainer = document.getElementById('uploadProgress');
+                    progressContainer.style.display = 'block';
+                    progressBar.style.width = '0%';
+
+                    let progress = 0;
+                    const interval = setInterval(() => {
+                        progress += 5;
+                        if (progress <= 90) progressBar.style.width = progress + '%';
+                    }, 100);
+
                     try {
-                        const videoId = await saveFileToIndexedDB(file, animeId, episode);
-                        clearInterval(i); pb.style.width = '100%'; setTimeout(() => pc.style.display = 'none', 500);
-                        let a = JSON.parse(localStorage.getItem('animeData') || '[]');
-                        const an = a.find(a => a.id === animeId);
-                        if (an) {
-                            if (!an.videos) an.videos = [];
-                            an.videos = an.videos.filter(v => v.episode !== episode);
-                            an.videos.push({ episode, type: 'indexeddb', id: videoId, size: file.size });
-                            // Сохраняем через централизованную функцию
-                            if (window.syncAnimeData) window.syncAnimeData(a);
-                            else localStorage.setItem('animeData', JSON.stringify(a));
-                            safeShowNotif(`✅ Серия ${episode} загружена!`);
+                        const videoId = await saveFileToIndexedDB(file, animeId, episode, 'SD');
+                        clearInterval(interval);
+                        progressBar.style.width = '100%';
+                        setTimeout(() => { progressContainer.style.display = 'none'; }, 500);
+
+                        let anime = JSON.parse(localStorage.getItem('animeData') || '[]');
+                        const a = anime.find(a => a.id === animeId);
+                        if (a) {
+                            if (!a.videos) a.videos = [];
+                            a.videos = a.videos.filter(v => v.episode !== episode);
+                            a.videos.push({
+                                episode,
+                                type: 'indexeddb',
+                                id: videoId,
+                                size: file.size
+                            });
+                            if (window.syncAnimeData) window.syncAnimeData(anime);
+                            else localStorage.setItem('animeData', JSON.stringify(anime));
+                            safeShowNotification(`✅ Серия ${episode} загружена!`);
+
                             e.target.reset();
                             fileRadio.checked = true;
                             fileBlock.style.display = 'block';
@@ -370,21 +550,27 @@
                             loadStats(); loadRecentVideos();
                         }
                     } catch (err) {
-                        clearInterval(i); pc.style.display = 'none';
-                        safeShowAlert('Ошибка сохранения в IndexedDB: ' + err.message);
+                        clearInterval(interval);
+                        progressContainer.style.display = 'none';
+                        safeShowAlert('Ошибка при сохранении в IndexedDB: ' + err.message);
                     }
                 } else {
                     const url = document.getElementById('videoUrl').value.trim();
-                    if (!url) { safeShowAlert('Введите ссылку!'); return; }
-                    let a = JSON.parse(localStorage.getItem('animeData') || '[]');
-                    const an = a.find(a => a.id === animeId);
-                    if (an) {
-                        if (!an.videos) an.videos = [];
-                        an.videos = an.videos.filter(v => v.episode !== episode);
-                        an.videos.push({ episode, type: 'url', url });
-                        if (window.syncAnimeData) window.syncAnimeData(a);
-                        else localStorage.setItem('animeData', JSON.stringify(a));
-                        safeShowNotif(`✅ Серия ${episode} добавлена (ссылка)!`);
+                    if (!url) { safeShowAlert('Введите ссылку на видео!'); return; }
+
+                    let anime = JSON.parse(localStorage.getItem('animeData') || '[]');
+                    const a = anime.find(a => a.id === animeId);
+                    if (a) {
+                        if (!a.videos) a.videos = [];
+                        a.videos = a.videos.filter(v => v.episode !== episode);
+                        a.videos.push({
+                            episode,
+                            type: 'url',
+                            url
+                        });
+                        if (window.syncAnimeData) window.syncAnimeData(anime);
+                        else localStorage.setItem('animeData', JSON.stringify(anime));
+                        safeShowNotification(`✅ Серия ${episode} добавлена (ссылка)!`);
                         e.target.reset();
                         fileRadio.checked = true;
                         fileBlock.style.display = 'block';
@@ -394,137 +580,201 @@
                 }
             });
 
-            // ========== РЕДАКТИРОВАНИЕ АНИМЕ ==========
-            window.openEditModal = function(id) {
-                const a = JSON.parse(localStorage.getItem('animeData') || '[]').find(a => a.id === id);
-                if (!a) return;
-                document.getElementById('editId').value = a.id;
-                document.getElementById('editTitle').value = a.title || '';
-                document.getElementById('editYear').value = a.year || '';
-                document.getElementById('editEpisodes').value = a.episodes || 12;
-                document.getElementById('editRating').value = a.rating || '';
-                document.getElementById('editDescription').value = a.description || '';
-                const eg = document.getElementById('editGenre');
-                const g = JSON.parse(localStorage.getItem('animeGenres') || '[]');
-                eg.innerHTML = g.map(g => `<option value="${g}" ${g === a.genre ? 'selected' : ''}>${g}</option>`).join('');
+            // ---------- РЕДАКТИРОВАНИЕ АНИМЕ ----------
+            window.openEditModal = function(animeId) {
+                const anime = JSON.parse(localStorage.getItem('animeData') || '[]').find(a => a.id === animeId);
+                if (!anime) return;
+                document.getElementById('editId').value = anime.id;
+                document.getElementById('editTitle').value = anime.title || '';
+                document.getElementById('editYear').value = anime.year || '';
+                document.getElementById('editEpisodes').value = anime.episodes || 12;
+                document.getElementById('editRating').value = anime.rating || '';
+                document.getElementById('editDescription').value = anime.description || '';
+                const editGenreSelect = document.getElementById('editGenre');
+                const genres = JSON.parse(localStorage.getItem('animeGenres') || '[]');
+                editGenreSelect.innerHTML = genres.map(g => `<option value="${g}" ${g === anime.genre ? 'selected' : ''}>${g}</option>`).join('');
                 document.getElementById('editAnimeModal').classList.add('active');
             };
+
             window.closeEditModal = function() {
                 document.getElementById('editAnimeModal').classList.remove('active');
                 document.getElementById('editImage').value = '';
             };
+
             document.getElementById('editAnimeForm').addEventListener('submit', async function(e) {
                 e.preventDefault();
                 const id = parseInt(document.getElementById('editId').value);
-                let a = JSON.parse(localStorage.getItem('animeData') || '[]');
-                const i = a.findIndex(a => a.id === id);
-                if (i === -1) return;
-                const imgFile = document.getElementById('editImage').files[0];
-                const proc = imgFile ? new Promise(r => { const fr = new FileReader(); fr.onload = e => r(e.target.result); fr.readAsDataURL(imgFile); }) : Promise.resolve(a[i].image);
-                const imgData = await proc;
-                a[i] = { ...a[i],
+                let animeData = JSON.parse(localStorage.getItem('animeData') || '[]');
+                const index = animeData.findIndex(a => a.id === id);
+                if (index === -1) return;
+
+                const imageFile = document.getElementById('editImage').files[0];
+                const processImage = imageFile ? new Promise(resolve => {
+                    const reader = new FileReader();
+                    reader.onload = (e) => resolve(e.target.result);
+                    reader.readAsDataURL(imageFile);
+                }) : Promise.resolve(animeData[index].image);
+
+                const imageDataUrl = await processImage;
+
+                animeData[index] = {
+                    ...animeData[index],
                     title: document.getElementById('editTitle').value.trim(),
                     genre: document.getElementById('editGenre').value,
                     year: parseInt(document.getElementById('editYear').value),
                     episodes: parseInt(document.getElementById('editEpisodes').value),
                     rating: parseFloat(document.getElementById('editRating').value) || 0,
                     description: document.getElementById('editDescription').value.trim(),
-                    image: imgData
+                    image: imageDataUrl
                 };
-                if (window.syncAnimeData) window.syncAnimeData(a);
-                else localStorage.setItem('animeData', JSON.stringify(a));
-                safeShowNotif('✅ Аниме обновлено!');
+
+                if (window.syncAnimeData) window.syncAnimeData(animeData);
+                else localStorage.setItem('animeData', JSON.stringify(animeData));
+                safeShowNotification('✅ Аниме обновлено!');
                 closeEditModal();
                 loadStats(); loadAnimeList(); loadAnimeSelect();
             });
 
-            // ========== ЖАНРЫ ==========
+            // ---------- ЖАНРЫ ----------
             function updateGenreSelects() {
-                const g = JSON.parse(localStorage.getItem('animeGenres') || '[]');
-                const ag = document.getElementById('genre'); if (ag) ag.innerHTML = g.map(g => `<option value="${g}">${g}</option>`).join('');
-                const eg = document.getElementById('editGenre'); if (eg) {
-                    const cv = eg.value;
-                    eg.innerHTML = g.map(g => `<option value="${g}" ${g === cv ? 'selected' : ''}>${g}</option>`).join('');
+                const genres = JSON.parse(localStorage.getItem('animeGenres') || '[]');
+                const addGenreSelect = document.getElementById('genre');
+                if (addGenreSelect) addGenreSelect.innerHTML = genres.map(g => `<option value="${g}">${g}</option>`).join('');
+                const editGenreSelect = document.getElementById('editGenre');
+                if (editGenreSelect) {
+                    const currentVal = editGenreSelect.value;
+                    editGenreSelect.innerHTML = genres.map(g => `<option value="${g}" ${g === currentVal ? 'selected' : ''}>${g}</option>`).join('');
                 }
             }
+
             function loadGenresList() {
-                const c = document.getElementById('genresList'); if (!c) return;
-                const g = JSON.parse(localStorage.getItem('animeGenres') || '[]');
-                const a = JSON.parse(localStorage.getItem('animeData') || '[]');
-                c.innerHTML = g.map(ge => {
-                    const cnt = a.filter(a => a.genre === ge).length;
-                    return `<div class="genre-item">
-                        <div class="genre-info">
-                            <span class="genre-name">${safeEscapeHtml(ge)}</span>
-                            <span class="genre-count">${cnt} аниме</span>
+                const container = document.getElementById('genresList');
+                if (!container) return;
+                const genres = JSON.parse(localStorage.getItem('animeGenres') || '[]');
+                const animeData = JSON.parse(localStorage.getItem('animeData') || '[]');
+                container.innerHTML = genres.map(g => {
+                    const count = animeData.filter(a => a.genre === g).length;
+                    return `
+                        <div class="genre-item">
+                            <div class="genre-info">
+                                <span class="genre-name">${safeEscapeHtml(g)}</span>
+                                <span class="genre-count">${count} аниме</span>
+                            </div>
+                            <button onclick="deleteGenreHandler('${safeEscapeHtml(g).replace(/'/g, "\\'")}', ${count})" 
+                                class="btn-small ${count > 0 ? 'btn-disabled' : 'btn-delete'}" ${count > 0 ? 'disabled' : ''}>
+                                ${count > 0 ? '🔒 Используется' : '🗑️ Удалить'}
+                            </button>
                         </div>
-                        <button onclick="deleteGenreHandler('${safeEscapeHtml(ge).replace(/'/g, "\\'")}', ${cnt})" 
-                            class="btn-small ${cnt > 0 ? 'btn-disabled' : 'btn-delete'}" ${cnt > 0 ? 'disabled' : ''}>
-                            ${cnt > 0 ? '🔒 Используется' : '🗑️ Удалить'}
-                        </button>
-                    </div>`}).join('');
+                    `;
+                }).join('');
             }
+
             window.deleteGenreHandler = function(genre, count) {
-                if (count > 0) { safeShowAlert(`Невозможно удалить жанр «${genre}», он используется в ${count} аниме.`); return; }
+                if (count > 0) {
+                    safeShowAlert(`Невозможно удалить жанр «${genre}», он используется в ${count} аниме.`);
+                    return;
+                }
                 safeShowConfirm(`Удалить жанр «${genre}»?`, () => {
-                    let g = JSON.parse(localStorage.getItem('animeGenres') || '[]');
-                    g = g.filter(g => g !== genre);
-                    localStorage.setItem('animeGenres', JSON.stringify(g));
-                    safeShowNotif(`🗑️ Жанр «${genre}» удалён`);
+                    let genres = JSON.parse(localStorage.getItem('animeGenres') || '[]');
+                    genres = genres.filter(g => g !== genre);
+                    localStorage.setItem('animeGenres', JSON.stringify(genres));
+                    safeShowNotification(`🗑️ Жанр «${genre}» удалён`);
                     loadGenresList(); updateGenreSelects();
                     window.dispatchEvent(new Event('storage'));
                 });
             };
+
             document.getElementById('addGenreBtn')?.addEventListener('click', () => {
-                const inp = document.getElementById('newGenre');
-                const ng = inp.value.trim().toLowerCase();
-                if (!ng) { safeShowAlert('Введите название жанра!'); return; }
-                let g = JSON.parse(localStorage.getItem('animeGenres') || '[]');
-                if (g.includes(ng)) { safeShowAlert('Такой жанр уже существует!'); return; }
-                g.push(ng); g.sort();
-                localStorage.setItem('animeGenres', JSON.stringify(g));
-                safeShowNotif(`✅ Жанр «${ng}» добавлен`);
-                inp.value = '';
+                const input = document.getElementById('newGenre');
+                const newGenre = input.value.trim().toLowerCase();
+                if (!newGenre) { safeShowAlert('Введите название жанра!'); return; }
+                let genres = JSON.parse(localStorage.getItem('animeGenres') || '[]');
+                if (genres.includes(newGenre)) { safeShowAlert('Такой жанр уже существует!'); return; }
+                genres.push(newGenre); genres.sort();
+                localStorage.setItem('animeGenres', JSON.stringify(genres));
+                safeShowNotification(`✅ Жанр «${newGenre}» добавлен`);
+                input.value = '';
                 loadGenresList(); updateGenreSelects();
                 window.dispatchEvent(new Event('storage'));
             });
 
-            // ========== ПОЛЬЗОВАТЕЛИ ==========
+            // ---------- ПОЛЬЗОВАТЕЛИ ----------
             function loadUsersList() {
-                const c = document.getElementById('usersList'); if (!c) return;
-                const u = JSON.parse(localStorage.getItem('users') || '[]');
-                if (!u.length) { c.innerHTML = '<p style="color:#666;">Пользователей нет</p>'; return; }
-                c.innerHTML = u.map(u => {
-                    const av = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50' viewBox='0 0 50 50'%3E%3Ccircle cx='25' cy='25' r='25' fill='%236c5ce7'/%3E%3Ctext x='50%25' y='50%25' font-size='25' fill='white' text-anchor='middle' dy='.3em'%3E${encodeURIComponent(u.username.charAt(0).toUpperCase())}%3C/text%3E%3C/svg%3E`;
-                    return `<div class="user-card">
-                        <div class="user-card-avatar"><img src="${av}" alt="avatar"></div>
-                        <div style="flex:1;">
-                            <div style="display:flex; align-items:center; gap:0.5rem;">
-                                <strong>${safeEscapeHtml(u.username)}</strong>
-                                <span class="user-badge ${u.role === 'admin' ? 'admin' : ''}">${u.role === 'admin' ? 'Админ' : 'Пользователь'}</span>
+                const container = document.getElementById('usersList');
+                if (!container) return;
+                const users = JSON.parse(localStorage.getItem('users') || '[]');
+                if (!users.length) {
+                    container.innerHTML = '<p style="color:#666;">Пользователей нет</p>';
+                    return;
+                }
+                container.innerHTML = users.map(u => {
+                    const avatarSvg = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50' viewBox='0 0 50 50'%3E%3Ccircle cx='25' cy='25' r='25' fill='%236c5ce7'/%3E%3Ctext x='50%25' y='50%25' font-size='25' fill='white' text-anchor='middle' dy='.3em'%3E${encodeURIComponent(u.username.charAt(0).toUpperCase())}%3C/text%3E%3C/svg%3E`;
+                    return `
+                        <div class="user-card">
+                            <div class="user-card-avatar"><img src="${avatarSvg}" alt="avatar"></div>
+                            <div style="flex:1;">
+                                <div style="display:flex; align-items:center; gap:0.5rem;">
+                                    <strong>${safeEscapeHtml(u.username)}</strong>
+                                    <span class="user-badge ${u.role === 'admin' ? 'admin' : ''}">${u.role === 'admin' ? 'Админ' : 'Пользователь'}</span>
+                                </div>
+                                <div style="color:#666;">${safeEscapeHtml(u.email)}</div>
                             </div>
-                            <div style="color:#666;">${safeEscapeHtml(u.email)}</div>
+                            ${u.role !== 'admin' ? `<button onclick="makeAdmin(${u.id})" class="btn-small" style="background:#00b894; color:white;">👑 Сделать админом</button>` : ''}
                         </div>
-                        ${u.role !== 'admin' ? `<button onclick="makeAdmin(${u.id})" class="btn-small" style="background:#00b894; color:white;">👑 Сделать админом</button>` : ''}
-                    </div>`}).join('');
+                    `;
+                }).join('');
+
+                const searchInput = document.getElementById('userSearch');
+                if (searchInput) {
+                    searchInput.oninput = (e) => {
+                        const q = e.target.value.toLowerCase();
+                        const filtered = users.filter(u => u.username.toLowerCase().includes(q) || u.email.toLowerCase().includes(q));
+                        container.innerHTML = filtered.map(u => {
+                            const avatarSvg = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50' viewBox='0 0 50 50'%3E%3Ccircle cx='25' cy='25' r='25' fill='%236c5ce7'/%3E%3Ctext x='50%25' y='50%25' font-size='25' fill='white' text-anchor='middle' dy='.3em'%3E${encodeURIComponent(u.username.charAt(0).toUpperCase())}%3C/text%3E%3C/svg%3E`;
+                            return `
+                                <div class="user-card">
+                                    <div class="user-card-avatar"><img src="${avatarSvg}" alt="avatar"></div>
+                                    <div style="flex:1;">
+                                        <div style="display:flex; align-items:center; gap:0.5rem;">
+                                            <strong>${safeEscapeHtml(u.username)}</strong>
+                                            <span class="user-badge ${u.role === 'admin' ? 'admin' : ''}">${u.role === 'admin' ? 'Админ' : 'Пользователь'}</span>
+                                        </div>
+                                        <div style="color:#666;">${safeEscapeHtml(u.email)}</div>
+                                    </div>
+                                    ${u.role !== 'admin' ? `<button onclick="makeAdmin(${u.id})" class="btn-small" style="background:#00b894; color:white;">👑</button>` : ''}
+                                </div>
+                            `;
+                        }).join('');
+                    };
+                }
             }
+
             window.makeAdmin = function(id) {
                 safeShowConfirm('Сделать этого пользователя администратором?', () => {
-                    let u = JSON.parse(localStorage.getItem('users') || '[]');
-                    const us = u.find(u => u.id === id);
-                    if (us) { us.role = 'admin'; localStorage.setItem('users', JSON.stringify(u)); safeShowNotif('👑 Админ назначен'); loadUsersList(); }
+                    let users = JSON.parse(localStorage.getItem('users') || '[]');
+                    const u = users.find(u => u.id === id);
+                    if (u) {
+                        u.role = 'admin';
+                        localStorage.setItem('users', JSON.stringify(users));
+                        safeShowNotification('👑 Админ назначен');
+                        loadUsersList();
+                    }
                 });
             };
 
-            // ========== ДОБАВЛЕНИЕ АНИМЕ ==========
+            // ---------- ДОБАВЛЕНИЕ АНИМЕ ----------
             document.getElementById('addAnimeForm').addEventListener('submit', function(e) {
                 e.preventDefault();
                 const title = document.getElementById('title').value.trim();
                 if (!title) { safeShowAlert('Введите название!'); return; }
-                const imgFile = document.getElementById('animeImage').files[0];
-                const proc = imgFile ? new Promise(r => { const fr = new FileReader(); fr.onload = e => r(e.target.result); fr.readAsDataURL(imgFile); }) : Promise.resolve('');
-                proc.then(imgData => {
-                    const n = {
+                const imageFile = document.getElementById('animeImage').files[0];
+                const processImage = imageFile ? new Promise(resolve => {
+                    const reader = new FileReader();
+                    reader.onload = (e) => resolve(e.target.result);
+                    reader.readAsDataURL(imageFile);
+                }) : Promise.resolve('');
+                processImage.then(imageDataUrl => {
+                    const newAnime = {
                         id: Date.now(),
                         title,
                         genre: document.getElementById('genre').value,
@@ -532,54 +782,78 @@
                         episodes: parseInt(document.getElementById('episodes').value) || 12,
                         rating: parseFloat(document.getElementById('rating').value) || 0,
                         description: document.getElementById('description').value.trim() || 'Описание отсутствует',
-                        image: imgData,
+                        image: imageDataUrl,
                         videos: []
                     };
-                    let a = JSON.parse(localStorage.getItem('animeData') || '[]');
-                    a.push(n);
-                    // Сохраняем через централизованную функцию
-                    if (window.syncAnimeData) window.syncAnimeData(a);
-                    else localStorage.setItem('animeData', JSON.stringify(a));
-                    safeShowNotif('✅ Аниме добавлено!');
+                    let anime = JSON.parse(localStorage.getItem('animeData') || '[]');
+                    anime.push(newAnime);
+                    if (window.syncAnimeData) window.syncAnimeData(anime);
+                    else localStorage.setItem('animeData', JSON.stringify(anime));
+                    safeShowNotification('✅ Аниме добавлено!');
                     e.target.reset();
                     loadStats(); loadAnimeList(); loadAnimeSelect();
-                }).catch(e => safeShowAlert('Ошибка при чтении изображения: ' + e.message));
+                }).catch(err => safeShowAlert('Ошибка при чтении изображения: ' + err.message));
             });
 
-            // ========== НАВИГАЦИЯ ==========
+            // ---------- НАВИГАЦИЯ ПО ВКЛАДКАМ ----------
             const navLinks = document.querySelectorAll('.admin-nav a');
             const sections = document.querySelectorAll('.admin-section');
+
             function activateSection(targetId) {
                 navLinks.forEach(l => l.classList.remove('active'));
                 sections.forEach(s => s.classList.remove('active'));
-                const al = Array.from(navLinks).find(l => l.getAttribute('href') === `#${targetId}`);
-                if (al) al.classList.add('active');
-                const as = document.getElementById(targetId);
-                if (as) as.classList.add('active');
+                const activeLink = Array.from(navLinks).find(l => l.getAttribute('href') === `#${targetId}`);
+                if (activeLink) activeLink.classList.add('active');
+                const activeSection = document.getElementById(targetId);
+                if (activeSection) activeSection.classList.add('active');
                 if (targetId === 'videos') { loadAnimeSelect(); loadRecentVideos(); }
                 if (targetId === 'users') loadUsersList();
                 if (targetId === 'genres') { loadGenresList(); updateGenreSelects(); }
             }
-            navLinks.forEach(l => l.addEventListener('click', e => { e.preventDefault(); activateSection(l.getAttribute('href').substring(1)); }));
 
-            // ========== БУРГЕР АДМИНКИ ==========
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    activateSection(link.getAttribute('href').substring(1));
+                });
+            });
+
+            // ---------- БУРГЕР АДМИНКИ ----------
             const adminBurger = document.getElementById('adminBurgerBtn');
             const adminNav = document.querySelector('.admin-nav');
             const adminTheme = document.querySelector('.admin-theme-switcher');
-            if (adminBurger) adminBurger.addEventListener('click', function() { this.classList.toggle('active'); adminNav.classList.toggle('active'); adminTheme.classList.toggle('active'); });
+            const adminLang = document.querySelector('.admin-language-switcher');
+            if (adminBurger) {
+                adminBurger.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    adminNav.classList.toggle('active');
+                    adminTheme.classList.toggle('active');
+                    adminLang.classList.toggle('active');
+                });
+            }
 
-            // ========== ВЫХОД ==========
+            // ---------- ВЫХОД ----------
             document.getElementById('logoutBtn').addEventListener('click', () => {
-                safeShowConfirm('Выйти из аккаунта?', () => { localStorage.removeItem('currentUser'); window.location.href = 'login.html'; });
+                safeShowConfirm('Выйти из аккаунта?', () => {
+                    localStorage.removeItem('currentUser');
+                    window.location.href = 'login.html';
+                });
             });
 
-            // ========== ИНИЦИАЛИЗАЦИЯ ==========
+            // ---------- ИНИЦИАЛИЗАЦИЯ ----------
             initIndexedDB().catch(console.error);
-            loadStats(); loadAnimeList(); loadUsersList(); loadAnimeSelect(); loadRecentVideos();
+            loadStats();
+            loadAnimeList();
+            loadUsersList();
+            loadAnimeSelect();
+            loadRecentVideos();
             updateGenreSelects();
             if (document.getElementById('genres')?.classList.contains('active')) loadGenresList();
+
             const hash = window.location.hash.substring(1);
-            if (hash && ['dashboard', 'anime', 'videos', 'genres', 'users'].includes(hash)) activateSection(hash);
+            if (hash && ['dashboard', 'anime', 'videos', 'genres', 'users'].includes(hash)) {
+                activateSection(hash);
+            }
         })();
     </script>
 </body>

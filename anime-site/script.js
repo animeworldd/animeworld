@@ -262,17 +262,30 @@ function updateUserMenu() {
     }
 }
 
-// ========== УВЕДОМЛЕНИЯ (ГАРАНТИРОВАННО ПО ЦЕНТРУ) ==========
-function showNotification(message, type = 'success') {
-    const oldNotifications = document.querySelectorAll('.notification-dynamic');
-    oldNotifications.forEach(el => el.remove());
+// ========== УВЕДОМЛЕНИЯ (ПРАВЫЙ ВЕРХНИЙ УГОЛ, КНОПКА ЗАКРЫТИЯ) ==========
+function showNotification(message, type = 'success', duration = 5000) {
+    let container = document.getElementById('notification-container');
+    if (!container) {
+        container = document.createElement('div');
+        container.id = 'notification-container';
+        document.body.appendChild(container);
+    }
+
     const notification = document.createElement('div');
     notification.className = `notification-dynamic ${type}`;
-    notification.textContent = message;
-    document.body.appendChild(notification);
-    setTimeout(() => {
-        if (notification.parentNode) notification.remove();
-    }, 3000);
+    notification.innerHTML = `<span>${message}</span><button class="notification-close">&times;</button>`;
+
+    const closeBtn = notification.querySelector('.notification-close');
+    closeBtn.addEventListener('click', () => {
+        notification.remove();
+        if (timeout) clearTimeout(timeout);
+    });
+
+    container.appendChild(notification);
+
+    const timeout = setTimeout(() => {
+        notification.remove();
+    }, duration);
 }
 
 // ========== МОДАЛЬНЫЕ ОКНА ==========
@@ -345,7 +358,9 @@ function showConfirmModal(message, onConfirm, onCancel) {
 function setTheme(themeName) {
     document.body.classList.remove(
         'theme-default','theme-dark','theme-blue','theme-purple',
-        'theme-cyberpunk','theme-sunset','theme-forest','theme-custom'
+        'theme-cyberpunk','theme-sunset','theme-forest','theme-ocean',
+        'theme-candy','theme-coffee','theme-mint','theme-lavender',
+        'theme-custom'
     );
     document.body.classList.add(`theme-${themeName}`);
     localStorage.setItem('animeTheme', themeName);
@@ -369,7 +384,7 @@ function initBurgerMenu() {
         const newBurger = burgerBtn.cloneNode(true);
         burgerBtn.parentNode.replaceChild(newBurger, burgerBtn);
         const newNav = document.getElementById('navLinks');
-        newBurger.addEventListener('click', function () {
+        newBurger.addEventListener('click', function() {
             this.classList.toggle('active');
             newNav.classList.toggle('active');
             document.body.style.overflow = newNav.classList.contains('active') ? 'hidden' : '';
@@ -474,3 +489,4 @@ window.syncAnimeData = syncAnimeData;
 window.addToHistory = addToHistory;
 window.formatTimeAgo = formatTimeAgo;
 window.getGenreColor = getGenreColor;
+window.updateUserMenu = updateUserMenu;

@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>Вход - AnimeWorld</title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -10,22 +10,31 @@
     <header>
         <nav class="navbar">
             <div class="logo">
-                <a href="index.html" style="text-decoration: none; color: inherit;">
-                    <h1>🍥 AnimeWorld</h1>
-                </a>
+                <a href="index.html"><h1>🍥 AnimeWorld</h1></a>
             </div>
-            <div class="nav-links">
+            <button class="burger-btn" id="burgerBtn"><span></span><span></span><span></span></button>
+            <div class="nav-links" id="navLinks">
                 <a href="index.html">Главная</a>
             </div>
             <div class="nav-controls">
+                <div id="userMenu" class="user-menu"></div>
+                <div class="language-switcher">
+                    <button class="lang-btn" onclick="if(typeof setLanguage==='function') setLanguage('ru')">🇷🇺 Русский</button>
+                    <button class="lang-btn" onclick="if(typeof setLanguage==='function') setLanguage('en')">🇬🇧 English</button>
+                </div>
                 <div class="theme-switcher">
-                    <button class="theme-btn" data-theme="default" onclick="setTheme('default')" title="Светлая">☀️</button>
-                    <button class="theme-btn" data-theme="dark" onclick="setTheme('dark')" title="Тёмная">🌙</button>
-                    <button class="theme-btn" data-theme="blue" onclick="setTheme('blue')" title="Синяя">🔵</button>
-                    <button class="theme-btn" data-theme="purple" onclick="setTheme('purple')" title="Фиолетовая">🟣</button>
-                    <button class="theme-btn" data-theme="cyberpunk" onclick="setTheme('cyberpunk')" title="Киберпанк">🤖</button>
-                    <button class="theme-btn" data-theme="sunset" onclick="setTheme('sunset')" title="Закат">🌅</button>
-                    <button class="theme-btn" data-theme="forest" onclick="setTheme('forest')" title="Лесная">🌲</button>
+                    <button class="theme-btn" data-theme="default" onclick="setTheme('default')">☀️</button>
+                    <button class="theme-btn" data-theme="dark" onclick="setTheme('dark')">🌙</button>
+                    <button class="theme-btn" data-theme="blue" onclick="setTheme('blue')">🔵</button>
+                    <button class="theme-btn" data-theme="purple" onclick="setTheme('purple')">🟣</button>
+                    <button class="theme-btn" data-theme="cyberpunk" onclick="setTheme('cyberpunk')">🤖</button>
+                    <button class="theme-btn" data-theme="sunset" onclick="setTheme('sunset')">🌅</button>
+                    <button class="theme-btn" data-theme="forest" onclick="setTheme('forest')">🌲</button>
+                    <button class="theme-btn" data-theme="ocean" onclick="setTheme('ocean')">🌊</button>
+                    <button class="theme-btn" data-theme="candy" onclick="setTheme('candy')">🍬</button>
+                    <button class="theme-btn" data-theme="coffee" onclick="setTheme('coffee')">☕</button>
+                    <button class="theme-btn" data-theme="mint" onclick="setTheme('mint')">🌿</button>
+                    <button class="theme-btn" data-theme="lavender" onclick="setTheme('lavender')">💜</button>
                 </div>
             </div>
         </nav>
@@ -50,6 +59,7 @@
 
     <script src="script.js"></script>
     <script>
+        // Инициализация админа, если нет пользователей
         if (!localStorage.getItem('users')) {
             const defaultUsers = [{
                 id: 1,
@@ -59,6 +69,7 @@
                 role: 'admin',
                 avatar: '👑',
                 favorites: [],
+                history: [],
                 createdAt: new Date().toISOString()
             }];
             localStorage.setItem('users', JSON.stringify(defaultUsers));
@@ -74,8 +85,8 @@
                 localStorage.setItem('currentUser', JSON.stringify(user));
                 window.location.href = 'index.html';
             } else {
-                if (typeof window.showAlertModal === 'function') {
-                    window.showAlertModal('❌ Неверный логин или пароль!');
+                if (typeof window.showNotification === 'function') {
+                    window.showNotification('❌ Неверный логин или пароль!', 'error');
                 } else {
                     alert('❌ Неверный логин или пароль!');
                 }
